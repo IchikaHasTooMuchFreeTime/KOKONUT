@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memorial Shrine</title>
+    <title>Praise Koko!</title>
     <style>
         :root {
             --text-color: #23c4bf;
@@ -208,9 +208,9 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <div class="biography">
-                <img id="main-image" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23cd6862' width='200' height='200'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='100' y='100'%3EUpload Photo%3C/text%3E%3C/svg%3E" alt="Person's Image">
-                <h2 id="person-name">[Person's Name]</h2>
-                <p id="person-dates">[Birth Date] - [Passing Date]</p>
+                <img id="main-image" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%234b5666' width='200' height='200'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='100' y='100'%3EUpload Photo%3C/text%3E%3C/svg%3E" alt="Koko's Image">
+                <h2 id="person-name">Koko</h2>
+                <p id="person-dates">[Birth Date] - [Present]</p>
                 
                 <div class="upload-section">
                     <p>Upload a main photo to display here</p>
@@ -220,8 +220,8 @@
             </div>
             
             <div class="tribute-text">
-                <h3>A Life Well Lived</h3>
-                <p id="bio-text">This is where you can write about the person's life, achievements, and what made them special. Edit this text to share your memories and thoughts.</p>
+                <h3>About Koko</h3>
+                <p id="bio-text">This is where you can write about Koko's life, achievements, and what makes them special. Edit this text to share your memories and thoughts.</p>
                 <textarea id="bio-edit" style="display: none; width: 100%; min-height: 200px; margin-top: 1rem; padding: 0.5rem;"></textarea>
                 <button class="upload-btn" id="edit-bio-btn" style="margin-top: 1rem;">Edit Biography</button>
                 <button class="upload-btn" id="save-bio-btn" style="display: none; margin-top: 1rem;">Save Biography</button>
@@ -231,7 +231,7 @@
         <!-- Gallery Page -->
         <div id="gallery" class="page">
             <h2>Photo Gallery</h2>
-            <p>Collection of precious moments</p>
+            <p>Collection of precious Koko moments</p>
             
             <div class="upload-section">
                 <p>Add more photos to the gallery</p>
@@ -242,7 +242,7 @@
             <div class="gallery" id="photo-gallery">
                 <!-- Gallery items will be added here dynamically -->
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect fill='%23cd6862' width='250' height='250'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='125' y='125'%3EAdd Photos%3C/text%3E%3C/svg%3E" alt="Gallery Image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect fill='%234b5666' width='250' height='250'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='125' y='125'%3EAdd Photos%3C/text%3E%3C/svg%3E" alt="Gallery Image">
                     <div class="caption">Upload photos to begin</div>
                 </div>
             </div>
@@ -250,7 +250,7 @@
         
         <!-- Memories Page -->
         <div id="memories" class="page">
-            <h2>Shared Memories</h2>
+            <h2>KITANNN</h2>
             <p>Stories and moments shared by loved ones</p>
             
             <div class="upload-section">
@@ -261,8 +261,8 @@
             <div id="memories-container">
                 <!-- Memories will be added here dynamically -->
                 <div class="tribute-text" style="text-align: left; margin-bottom: 1rem;">
-                    <p>"This is an example memory. You can edit or delete it and add your own."</p>
-                    <small style="display: block; text-align: right; color: var(--text-color);">- Shared by You</small>
+                    <p>"Koko is the best! They always bring joy to everyone around them."</p>
+                    <small style="display: block; text-align: right; color: var(--text-color);">- Koko Fan</small>
                     <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
                 </div>
             </div>
@@ -270,20 +270,20 @@
         
         <!-- Tributes Page -->
         <div id="tributes" class="page">
-            <h2>Tributes</h2>
-            <p>Messages of love and remembrance</p>
+            <h2>Kita GIFS</h2>
+            <p>Upload and share GIFs of Koko</p>
             
             <div class="upload-section">
                 <input type="text" id="tribute-author" placeholder="Your name" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;">
-                <textarea id="tribute-text" placeholder="Your tribute message..." style="width: 100%; min-height: 100px; padding: 0.5rem;"></textarea>
-                <button class="upload-btn" id="add-tribute-btn">Add Tribute</button>
+                <input type="file" id="gif-upload" accept="image/gif" style="display: none;">
+                <button class="upload-btn" onclick="document.getElementById('gif-upload').click()">Upload GIF</button>
             </div>
             
             <div id="tributes-container">
-                <!-- Tributes will be added here dynamically -->
-                <div class="tribute-text" style="text-align: left; margin-bottom: 1rem;">
-                    <h4>Example Tribute</h4>
-                    <p>"This is an example tribute message. You can edit or delete it and add your own."</p>
+                <!-- GIFs will be added here dynamically -->
+                <div class="tribute-text" style="text-align: center;">
+                    <h4>Example GIF</h4>
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWJtM3R2dGJxZGx0a3h4eXJpN3J4dG1lZ3B0dXZ3Z3RlZHF1d2RzZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aTskHEUdgCQAXde/giphy.gif" alt="Example GIF" style="max-width: 100%; max-height: 300px;">
                     <small style="display: block; text-align: right; color: var(--text-color);">- From Example</small>
                     <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
                 </div>
@@ -292,8 +292,8 @@
     </div>
     
     <footer>
-        <p>Created with love and remembrance</p>
-        <p>© <span id="current-year"></span> Memorial Shrine</p>
+        <p>Created with love for Koko</p>
+        <p>© <span id="current-year"></span> Koko Fan Club</p>
     </footer>
     
     <script>
@@ -440,7 +440,7 @@
         const personDates = document.getElementById('person-dates');
         
         personName.addEventListener('click', function() {
-            const newName = prompt("Enter the person's name:", personName.textContent);
+            const newName = prompt("Enter Koko's name:", personName.textContent);
             if (newName !== null) {
                 personName.textContent = newName;
                 localStorage.setItem('personName', newName);
@@ -448,7 +448,7 @@
         });
         
         personDates.addEventListener('click', function() {
-            const newDates = prompt("Enter the dates (format: [Birth Date] - [Passing Date]):", personDates.textContent);
+            const newDates = prompt("Enter the dates (format: [Birth Date] - [Present]):", personDates.textContent);
             if (newDates !== null) {
                 personDates.textContent = newDates;
                 localStorage.setItem('personDates', newDates);
@@ -528,41 +528,39 @@
             });
         }
         
-        // Tributes functionality
-        const addTributeBtn = document.getElementById('add-tribute-btn');
-        const tributeText = document.getElementById('tribute-text');
-        const tributeAuthor = document.getElementById('tribute-author');
-        const tributesContainer = document.getElementById('tributes-container');
-        
-        addTributeBtn.addEventListener('click', function() {
-            const tribute = tributeText.value.trim();
-            const author = tributeAuthor.value.trim();
+        // GIF upload functionality
+        document.getElementById('gif-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const author = document.getElementById('tribute-author').value.trim();
             
-            if (tribute && author) {
-                const tributeElement = document.createElement('div');
-                tributeElement.className = 'tribute-text';
-                tributeElement.style.textAlign = 'left';
-                tributeElement.style.marginBottom = '1rem';
-                
-                tributeElement.innerHTML = `
-                    <h4>${author}</h4>
-                    <p>"${tribute}"</p>
-                    <small style="display: block; text-align: right; color: var(--text-color);">- From ${author}</small>
-                    <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
-                `;
-                
-                tributesContainer.prepend(tributeElement);
-                tributeText.value = '';
-                tributeAuthor.value = '';
-                
-                // Add delete functionality
-                tributeElement.querySelector('button').addEventListener('click', function() {
-                    tributeElement.remove();
+            if (file && author) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const gifElement = document.createElement('div');
+                    gifElement.className = 'tribute-text';
+                    gifElement.style.textAlign = 'center';
+                    gifElement.style.marginBottom = '1rem';
+                    
+                    gifElement.innerHTML = `
+                        <h4>${author}</h4>
+                        <img src="${event.target.result}" alt="Koko GIF" style="max-width: 100%; max-height: 300px;">
+                        <small style="display: block; text-align: right; color: var(--text-color);">- From ${author}</small>
+                        <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
+                    `;
+                    
+                    document.getElementById('tributes-container').prepend(gifElement);
+                    document.getElementById('tribute-author').value = '';
+                    
+                    // Add delete functionality
+                    gifElement.querySelector('button').addEventListener('click', function() {
+                        gifElement.remove();
+                        saveTributesToLocalStorage();
+                    });
+                    
+                    // Save to localStorage
                     saveTributesToLocalStorage();
-                });
-                
-                // Save to localStorage
-                saveTributesToLocalStorage();
+                };
+                reader.readAsDataURL(file);
             }
         });
         
@@ -578,16 +576,16 @@
         // Load tributes from localStorage if available
         if (localStorage.getItem('tributes')) {
             const tributes = JSON.parse(localStorage.getItem('tributes'));
-            tributesContainer.innerHTML = '';
+            document.getElementById('tributes-container').innerHTML = '';
             
             tributes.forEach(tributeHTML => {
                 const tributeElement = document.createElement('div');
                 tributeElement.className = 'tribute-text';
-                tributeElement.style.textAlign = 'left';
+                tributeElement.style.textAlign = 'center';
                 tributeElement.style.marginBottom = '1rem';
                 tributeElement.innerHTML = tributeHTML;
                 
-                tributesContainer.appendChild(tributeElement);
+                document.getElementById('tributes-container').appendChild(tributeElement);
                 
                 // Reattach delete event listeners
                 tributeElement.querySelector('button').addEventListener('click', function() {
