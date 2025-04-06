@@ -3,597 +3,969 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praise Koko!</title>
+    <title>Kita Ikuyo - Bocchi the Rock</title>
     <style>
-        :root {
-            --text-color: #23c4bf;
-            --bg-color: #4b5666;
-            --hover-color: #1aa8a3;
-        }
-        
+        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
-        
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebf3;
+            color: #333;
+            overflow-x: hidden;
         }
-        
+
+        /* Header Styles */
         header {
+            background: linear-gradient(135deg, #ff66b2, #ff3385);
+            color: white;
             text-align: center;
             padding: 2rem 0;
-            border-bottom: 2px solid var(--text-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff66b2, 0 0 20px #ff66b2;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff3385, 0 0 40px #ff3385;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-style: italic;
             margin-bottom: 1rem;
         }
-        
+
+        .kita-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat;
+            opacity: 0;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
         nav {
+            background-color: #ff3385;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
             display: flex;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        
-        nav a {
-            color: var(--text-color);
+
+        .nav-link {
+            color: white;
             text-decoration: none;
             padding: 0.5rem 1.5rem;
             margin: 0 0.5rem;
-            border-radius: 5px;
+            border-radius: 20px;
             transition: all 0.3s ease;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
-        nav a:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+
+        .nav-link:hover {
+            background-color: white;
+            color: #ff3385;
+            transform: translateY(-2px);
         }
-        
+
+        /* Main Content */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
-        
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease;
+
+        .section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        
-        .page.active {
-            display: block;
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff66b2, #ff3385);
         }
-        
+
+        h2 {
+            color: #ff3385;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 2px dashed #ffb3d9;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #ff66b2;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
-        
+
         .gallery-item {
             position: relative;
+            border-radius: 10px;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .gallery-item:hover {
-            transform: scale(1.03);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        
-        .gallery-item img {
+
+        .gallery-img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
-        
-        .gallery-item .caption {
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             color: white;
-            padding: 0.5rem;
+            padding: 1rem;
             transform: translateY(100%);
             transition: transform 0.3s ease;
         }
-        
-        .gallery-item:hover .caption {
+
+        .gallery-item:hover .gallery-caption {
             transform: translateY(0);
         }
-        
-        .upload-section {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .upload-btn {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .upload-btn:hover {
-            background-color: var(--hover-color);
-        }
-        
-        .biography {
-            text-align: center;
+
+        /* Character Info */
+        .character-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
             margin-bottom: 2rem;
         }
-        
-        .biography img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--text-color);
+
+        .character-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .character-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid #ffb3d9;
+        }
+
+        .character-details {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .info-table tr:nth-child(even) {
+            background-color: #fff5f9;
+        }
+
+        .info-table th, .info-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ffd6e7;
+        }
+
+        .info-table th {
+            color: #ff3385;
+            width: 30%;
+        }
+
+        /* Quotes Section */
+        .quotes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .quote {
+            background-color: #fff5f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #ff66b2;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .quote:hover {
+            transform: translateX(10px);
+            background-color: #ffebf3;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .quote-text::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            line-height: 1;
+            color: #ffb3d9;
+        }
+
+        .quote-source {
+            text-align: right;
+            font-weight: bold;
+            color: #ff3385;
+        }
+
+        /* Music Section */
+        .songs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .song-card {
+            background-color: #fff5f9;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 51, 133, 0.1);
+            background-color: #ffebf3;
+        }
+
+        .song-title {
+            color: #ff3385;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .song-album {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .song-description {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .play-button {
+            background-color: #ff3385;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .play-button:hover {
+            background-color: #ff66b2;
+            transform: scale(1.05);
+        }
+
+        /* Fun Facts */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .fact-card {
+            background-color: #fff5f9;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 51, 133, 0.1);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            color: #ff3385;
             margin-bottom: 1rem;
         }
-        
-        .tribute-text {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
+
+        .fact-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255, 51, 133, 0.1);
+            z-index: 0;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
+
+        /* Footer */
         footer {
+            background: linear-gradient(135deg, #ff3385, #ff0066);
+            color: white;
             text-align: center;
-            padding: 2rem 0;
-            border-top: 2px solid var(--text-color);
-            margin-top: 2rem;
+            padding: 3rem 0;
+            margin-top: 3rem;
         }
-        
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #ffd6e7;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff3385;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            background-color: #ffd6e7;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: #ff3385;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #ff66b2;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            nav {
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 1rem;
+                margin: 0.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .character-info {
                 flex-direction: column;
-                align-items: center;
             }
             
-            nav a {
-                margin: 0.3rem 0;
+            .character-image, .character-details {
+                min-width: 100%;
             }
-            
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        /* Animation Classes */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .wiggle {
+            display: inline-block;
+            animation: wiggle 2s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(-3deg);
+            }
+            50% {
+                transform: rotate(3deg);
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Praise Koko!</h1>
-        <p>A page for Koko!</p>
+        <div class="kita-hearts" id="hearts-container"></div>
+        <div class="header-content">
+            <h1 class="wiggle">Kita Ikuyo</h1>
+            <p class="subtitle">The Energetic Guitarist of Kessoku Band</p>
+            <p>Bocchi the Rock's most vibrant and cheerful character!</p>
+        </div>
     </header>
-    
+
     <nav>
-        <a href="#" class="nav-link" data-page="home">Home</a>
-        <a href="#" class="nav-link" data-page="gallery">Gallery</a>
-        <a href="#" class="nav-link" data-page="memories">KITANNN</a>
-        <a href="#" class="nav-link" data-page="tributes">Kita GIFS</a>
+        <div class="nav-container">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#quotes" class="nav-link">Quotes</a>
+            <a href="#music" class="nav-link">Music</a>
+            <a href="#facts" class="nav-link">Fun Facts</a>
+        </div>
     </nav>
-    
+
     <div class="container">
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="biography">
-                <img id="main-image" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%234b5666' width='200' height='200'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='100' y='100'%3EUpload Photo%3C/text%3E%3C/svg%3E" alt="Koko's Image">
-                <h2 id="person-name">Koko</h2>
-                <p id="person-dates">[Birth Date] - [Present]</p>
-                
-                <div class="upload-section">
-                    <p>Upload a main photo to display here</p>
-                    <input type="file" id="main-photo-upload" accept="image/*" style="display: none;">
-                    <button class="upload-btn" onclick="document.getElementById('main-photo-upload').click()">Upload Photo</button>
+        <section id="about" class="section">
+            <h2>About Kita Ikuyo</h2>
+            <div class="character-info">
+                <div class="character-image">
+                    <img src="https://i.imgur.com/JQ7Zt8j.png" alt="Kita Ikuyo" class="pulse">
+                </div>
+                <div class="character-details">
+                    <p>Kita Ikuyo is one of the main characters in the anime and manga series <strong>Bocchi the Rock!</strong> She serves as the guitarist and backing vocalist for the band <em>Kessoku Band</em> alongside Hitori "Bocchi" Gotoh, Nijika Ijichi, and Ryou Yamada.</p>
+                    <p>Known for her cheerful and energetic personality, Kita brings life to the band with her vibrant stage presence and musical talent. Despite her sometimes airheaded nature, she's deeply passionate about music and her friends.</p>
+                    
+                    <h3>Character Details</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>Full Name</th>
+                            <td>Kita Ikuyo (喜多 郁代)</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>17 years old</td>
+                        </tr>
+                        <tr>
+                            <th>Birthday</th>
+                            <td>April 21</td>
+                        </tr>
+                        <tr>
+                            <th>Height</th>
+                            <td>158 cm (5'2")</td>
+                        </tr>
+                        <tr>
+                            <th>Instrument</th>
+                            <td>Gibson Les Paul (guitar)</td>
+                        </tr>
+                        <tr>
+                            <th>Band Position</th>
+                            <td>Guitarist, Backing Vocalist</td>
+                        </tr>
+                        <tr>
+                            <th>Voice Actor</th>
+                            <td>Sayumi Suzushiro (Japanese), Anairis Quiñones (English)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2>Kita Ikuyo Gallery</h2>
+            <p>Explore a collection of Kita Ikuyo's most memorable moments and expressions from Bocchi the Rock!</p>
             
-            <div class="tribute-text">
-                <h3>About Koko</h3>
-                <p id="bio-text">This is where you can write about Koko's life, achievements, and what makes them special. Edit this text to share your memories and thoughts.</p>
-                <textarea id="bio-edit" style="display: none; width: 100%; min-height: 200px; margin-top: 1rem; padding: 0.5rem;"></textarea>
-                <button class="upload-btn" id="edit-bio-btn" style="margin-top: 1rem;">Edit Biography</button>
-                <button class="upload-btn" id="save-bio-btn" style="display: none; margin-top: 1rem;">Save Biography</button>
-            </div>
-        </div>
-        
-        <!-- Gallery Page -->
-        <div id="gallery" class="page">
-            <h2>Photo Gallery</h2>
-            <p>Collection of precious Koko moments</p>
-            
-            <div class="upload-section">
-                <p>Add more photos to the gallery</p>
-                <input type="file" id="gallery-upload" accept="image/*" multiple style="display: none;">
-                <button class="upload-btn" onclick="document.getElementById('gallery-upload').click()">Upload Photos</button>
-            </div>
-            
-            <div class="gallery" id="photo-gallery">
-                <!-- Gallery items will be added here dynamically -->
+            <div class="gallery">
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect fill='%234b5666' width='250' height='250'/%3E%3Ctext fill='%2323c4bf' font-family='Arial' font-size='24' dy='.3em' text-anchor='middle' x='125' y='125'%3EAdd Photos%3C/text%3E%3C/svg%3E" alt="Gallery Image">
-                    <div class="caption">Upload photos to begin</div>
+                    <img src="https://i.imgur.com/Vx5WQYa.png" alt="Kita smiling" class="gallery-img">
+                    <div class="gallery-caption">Kita's signature cheerful smile</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/9YtGZ3L.png" alt="Kita playing guitar" class="gallery-img">
+                    <div class="gallery-caption">Performing with Kessoku Band</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/mQcT4uD.png" alt="Kita excited" class="gallery-img">
+                    <div class="gallery-caption">Excited about band practice</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/JQ7Zt8j.png" alt="Kita posing" class="gallery-img">
+                    <div class="gallery-caption">Striking a pose</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/5X6k9fF.png" alt="Kita surprised" class="gallery-img">
+                    <div class="gallery-caption">Surprised expression</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/3qLQZbP.png" alt="Kita with Bocchi" class="gallery-img">
+                    <div class="gallery-caption">With Bocchi</div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Memories Page -->
-        <div id="memories" class="page">
-            <h2>KITANNN</h2>
-            <p>Stories and moments shared by loved ones</p>
+        </section>
+
+        <section id="quotes" class="section">
+            <h2>Iconic Kita Ikuyo Quotes</h2>
+            <p>Some of Kita's most memorable lines from the series:</p>
             
-            <div class="upload-section">
-                <textarea id="memory-text" placeholder="Share your memory here..." style="width: 100%; min-height: 100px; padding: 0.5rem;"></textarea>
-                <button class="upload-btn" id="add-memory-btn">Share Memory</button>
-            </div>
-            
-            <div id="memories-container">
-                <!-- Memories will be added here dynamically -->
-                <div class="tribute-text" style="text-align: left; margin-bottom: 1rem;">
-                    <p>"Koko is the best! They always bring joy to everyone around them."</p>
-                    <small style="display: block; text-align: right; color: var(--text-color);">- Koko Fan</small>
-                    <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
+            <div class="quotes-container">
+                <div class="quote">
+                    <p class="quote-text">"Music is all about having fun! If you're not enjoying yourself, what's the point?"</p>
+                    <p class="quote-source">- Encouraging Bocchi during practice</p>
+                </div>
+                <div class="quote">
+                    <p class="quote-text">"The stage is where I feel most alive! The lights, the crowd, the energy... it's the best feeling in the world!"</p>
+                    <p class="quote-source">- Talking about performing</p>
+                </div>
+                <div class="quote">
+                    <p class="quote-text">"Bocchi-chan! Let's practice together! I'll help you with the parts you're struggling with!"</p>
+                    <p class="quote-source">- Supporting her bandmate</p>
+                </div>
+                <div class="quote">
+                    <p class="quote-text">"Even if we make mistakes, as long as we're having fun, the audience will have fun too!"</p>
+                    <p class="quote-source">- Before a live performance</p>
+                </div>
+                <div class="quote">
+                    <p class="quote-text">"Being in a band isn't just about playing music. It's about the connections we make and the memories we create together!"</p>
+                    <p class="quote-source">- Reflecting on Kessoku Band</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- Tributes Page -->
-        <div id="tributes" class="page">
-            <h2>Kita GIFS</h2>
-            <p>Upload and share GIFs of Koko</p>
+        </section>
+
+        <section id="music" class="section">
+            <h2>Kita's Music with Kessoku Band</h2>
+            <p>Kita contributes her guitar skills and backing vocals to these amazing Kessoku Band tracks:</p>
             
-            <div class="upload-section">
-                <input type="text" id="tribute-author" placeholder="Your name" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;">
-                <input type="file" id="gif-upload" accept="image/gif" style="display: none;">
-                <button class="upload-btn" onclick="document.getElementById('gif-upload').click()">Upload GIF</button>
-            </div>
-            
-            <div id="tributes-container">
-                <!-- GIFs will be added here dynamically -->
-                <div class="tribute-text" style="text-align: center;">
-                    <h4>Example GIF</h4>
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWJtM3R2dGJxZGx0a3h4eXJpN3J4dG1lZ3B0dXZ3Z3RlZHF1d2RzZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aTskHEUdgCQAXde/giphy.gif" alt="Example GIF" style="max-width: 100%; max-height: 300px;">
-                    <small style="display: block; text-align: right; color: var(--text-color);">- From Example</small>
-                    <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
+            <div class="songs-list">
+                <div class="song-card">
+                    <h3 class="song-title">"Seishun Complex"</h3>
+                    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
+                    <p class="song-description">The opening theme song featuring Kita's energetic guitar riffs and backing vocals that perfectly capture the youthful energy of the band.</p>
+                    <button class="play-button" data-song="seishun-complex">
+                        <span class="play-icon">▶</span> Play Sample
+                    </button>
+                </div>
+                <div class="song-card">
+                    <h3 class="song-title">"Guitar, Loneliness and Blue Planet"</h3>
+                    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
+                    <p class="song-description">A track showcasing Kita's guitar skills alongside Bocchi's, with their contrasting styles creating a perfect harmony.</p>
+                    <button class="play-button" data-song="guitar-loneliness">
+                        <span class="play-icon">▶</span> Play Sample
+                    </button>
+                </div>
+                <div class="song-card">
+                    <h3 class="song-title">"That Band"</h3>
+                    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
+                    <p class="song-description">A song that highlights the chemistry between all band members, with Kita's backing vocals adding depth to the harmonies.</p>
+                    <button class="play-button" data-song="that-band">
+                        <span class="play-icon">▶</span> Play Sample
+                    </button>
+                </div>
+                <div class="song-card">
+                    <h3 class="song-title">"Never Forget"</h3>
+                    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
+                    <p class="song-description">An emotional ballad where Kita's guitar work provides the perfect complement to the heartfelt lyrics.</p>
+                    <button class="play-button" data-song="never-forget">
+                        <span class="play-icon">▶</span> Play Sample
+                    </button>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="facts" class="section">
+            <h2>Fun Facts About Kita Ikuyo</h2>
+            <p>Did you know these interesting tidbits about our favorite energetic guitarist?</p>
+            
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">1</div>
+                    <div class="fact-icon">🎸</div>
+                    <h3>Guitar Inspiration</h3>
+                    <p>Kita chose to play guitar after being inspired by a famous female guitarist she saw perform live in middle school.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">2</div>
+                    <div class="fact-icon">🍓</div>
+                    <h3>Favorite Food</h3>
+                    <p>She has a massive sweet tooth and particularly loves strawberry shortcake, often eating it after performances.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">3</div>
+                    <div class="fact-icon">🎤</div>
+                    <h3>Stage Fright</h3>
+                    <p>Despite her energetic stage presence, Kita actually gets nervous before every performance but channels it into energy.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">4</div>
+                    <div class="fact-icon">📚</div>
+                    <h3>Academic Skills</h3>
+                    <p>She's surprisingly good at English but terrible at math, often asking Bocchi for help with homework.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">5</div>
+                    <div class="fact-icon">🐶</div>
+                    <h3>Pet Lover</h3>
+                    <p>Kita adores animals and has a pet Shiba Inu named "Mochi" that she often posts about on social media.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">6</div>
+                    <div class="fact-icon">🎧</div>
+                    <h3>Music Taste</h3>
+                    <p>Her favorite band outside of Kessoku Band is The Strokes, and she often listens to them for inspiration.</p>
+                </div>
+            </div>
+        </section>
     </div>
-    
+
     <footer>
-        <p>Created with love for Koko</p>
-        <p>© <span id="current-year"></span> Koko Fan Club</p>
+        <div class="footer-content">
+            <h3>Kita Ikuyo Fan Club</h3>
+            <p>Join us in celebrating the most energetic guitarist in anime!</p>
+            
+            <div class="footer-links">
+                <a href="#" class="footer-link">Home</a>
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Gallery</a>
+                <a href="#" class="footer-link">Forum</a>
+                <a href="#" class="footer-link">Merchandise</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">📱</a>
+                <a href="#" class="social-icon">🐦</a>
+                <a href="#" class="social-icon">📷</a>
+                <a href="#" class="social-icon">🎵</a>
+                <a href="#" class="social-icon">▶️</a>
+            </div>
+            
+            <p class="copyright">© 2023 Kita Ikuyo Fan Page. Bocchi the Rock! is property of Aki Hamaji and Houbunsha.</p>
+        </div>
     </footer>
-    
+
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
+
     <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Navigation between pages
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const pageId = this.getAttribute('data-page');
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
                 
-                // Hide all pages
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                });
+                // Random position
+                const leftPos = Math.random() * 100;
+                heart.style.left = `${leftPos}%`;
                 
-                // Show selected page
-                document.getElementById(pageId).classList.add('active');
+                // Random delay
+                const delay = Math.random() * 5;
+                heart.style.animationDelay = `${delay}s`;
                 
-                // Update active nav link
-                document.querySelectorAll('.nav-link').forEach(navLink => {
-                    navLink.style.backgroundColor = '';
-                    navLink.style.color = '';
-                });
+                // Random size
+                const size = 15 + Math.random() * 15;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
                 
-                this.style.backgroundColor = 'var(--text-color)';
-                this.style.color = 'var(--bg-color)';
-            });
-        });
-        
-        // Main photo upload
-        document.getElementById('main-photo-upload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.getElementById('main-image').src = event.target.result;
-                    
-                    // Save to localStorage
-                    localStorage.setItem('mainPhoto', event.target.result);
-                };
-                reader.readAsDataURL(file);
+                container.appendChild(heart);
             }
-        });
-        
-        // Load main photo from localStorage if available
-        if (localStorage.getItem('mainPhoto')) {
-            document.getElementById('main-image').src = localStorage.getItem('mainPhoto');
         }
         
-        // Gallery photo upload
-        document.getElementById('gallery-upload').addEventListener('change', function(e) {
-            const files = e.target.files;
-            const gallery = document.getElementById('photo-gallery');
+        // Scroll to top button
+        function setupScrollToTop() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
             
-            // Clear the default placeholder if it exists
-            if (gallery.innerHTML.includes('Add Photos')) {
-                gallery.innerHTML = '';
-            }
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
             
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader();
-                
-                reader.onload = function(event) {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Smooth scrolling for navigation
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    galleryItem.innerHTML = `
-                        <img src="${event.target.result}" alt="Gallery Image">
-                        <div class="caption">${file.name.split('.')[0]}</div>
-                        <button class="upload-btn" style="position: absolute; top: 10px; right: 10px; padding: 0.2rem 0.5rem; font-size: 0.8rem;">×</button>
-                    `;
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
                     
-                    gallery.appendChild(galleryItem);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Play button functionality
+        function setupPlayButtons() {
+            const playButtons = document.querySelectorAll('.play-button');
+            const audioSamples = {
+                'seishun-complex': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                'guitar-loneliness': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+                'that-band': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+                'never-forget': 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
+            };
+            
+            let currentAudio = null;
+            
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const songId = this.getAttribute('data-song');
+                    const audioUrl = audioSamples[songId];
                     
-                    // Add delete functionality
-                    galleryItem.querySelector('button').addEventListener('click', function() {
-                        galleryItem.remove();
-                        saveGalleryToLocalStorage();
+                    // Stop any currently playing audio
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                    }
+                    
+                    // Update button text
+                    const allButtons = document.querySelectorAll('.play-button');
+                    allButtons.forEach(btn => {
+                        if (btn !== this) {
+                            btn.innerHTML = '<span class="play-icon">▶</span> Play Sample';
+                        }
                     });
                     
-                    // Save gallery to localStorage
-                    saveGalleryToLocalStorage();
-                };
-                
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Function to save gallery to localStorage
-        function saveGalleryToLocalStorage() {
-            const gallery = document.getElementById('photo-gallery');
-            const galleryItems = gallery.innerHTML;
-            localStorage.setItem('photoGallery', galleryItems);
-        }
-        
-        // Load gallery from localStorage if available
-        if (localStorage.getItem('photoGallery')) {
-            document.getElementById('photo-gallery').innerHTML = localStorage.getItem('photoGallery');
-            
-            // Reattach delete event listeners
-            document.querySelectorAll('.gallery-item button').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    this.parentElement.remove();
-                    saveGalleryToLocalStorage();
+                    if (this.innerHTML.includes('▶')) {
+                        // Play the audio
+                        currentAudio = new Audio(audioUrl);
+                        currentAudio.play();
+                        this.innerHTML = '<span class="play-icon">⏸</span> Pause';
+                        
+                        currentAudio.addEventListener('ended', () => {
+                            this.innerHTML = '<span class="play-icon">▶</span> Play Sample';
+                        });
+                    } else {
+                        // Pause the audio
+                        if (currentAudio) {
+                            currentAudio.pause();
+                        }
+                        this.innerHTML = '<span class="play-icon">▶</span> Play Sample';
+                    }
                 });
             });
         }
         
-        // Biography edit functionality
-        const editBioBtn = document.getElementById('edit-bio-btn');
-        const saveBioBtn = document.getElementById('save-bio-btn');
-        const bioText = document.getElementById('bio-text');
-        const bioEdit = document.getElementById('bio-edit');
-        
-        editBioBtn.addEventListener('click', function() {
-            bioText.style.display = 'none';
-            bioEdit.style.display = 'block';
-            bioEdit.value = bioText.textContent;
-            editBioBtn.style.display = 'none';
-            saveBioBtn.style.display = 'inline-block';
-        });
-        
-        saveBioBtn.addEventListener('click', function() {
-            bioText.textContent = bioEdit.value;
-            bioText.style.display = 'block';
-            bioEdit.style.display = 'none';
-            editBioBtn.style.display = 'inline-block';
-            saveBioBtn.style.display = 'none';
+        // Gallery hover effect
+        function setupGalleryHover() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
             
-            // Save to localStorage
-            localStorage.setItem('biographyText', bioEdit.value);
-        });
-        
-        // Load biography from localStorage if available
-        if (localStorage.getItem('biographyText')) {
-            bioText.textContent = localStorage.getItem('biographyText');
-        }
-        
-        // Person's name and dates edit
-        const personName = document.getElementById('person-name');
-        const personDates = document.getElementById('person-dates');
-        
-        personName.addEventListener('click', function() {
-            const newName = prompt("Enter Koko's name:", personName.textContent);
-            if (newName !== null) {
-                personName.textContent = newName;
-                localStorage.setItem('personName', newName);
-            }
-        });
-        
-        personDates.addEventListener('click', function() {
-            const newDates = prompt("Enter the dates (format: [Birth Date] - [Present]):", personDates.textContent);
-            if (newDates !== null) {
-                personDates.textContent = newDates;
-                localStorage.setItem('personDates', newDates);
-            }
-        });
-        
-        // Load person's name and dates from localStorage if available
-        if (localStorage.getItem('personName')) {
-            personName.textContent = localStorage.getItem('personName');
-        }
-        
-        if (localStorage.getItem('personDates')) {
-            personDates.textContent = localStorage.getItem('personDates');
-        }
-        
-        // Memories functionality
-        const addMemoryBtn = document.getElementById('add-memory-btn');
-        const memoryText = document.getElementById('memory-text');
-        const memoriesContainer = document.getElementById('memories-container');
-        
-        addMemoryBtn.addEventListener('click', function() {
-            const memory = memoryText.value.trim();
-            if (memory) {
-                const memoryElement = document.createElement('div');
-                memoryElement.className = 'tribute-text';
-                memoryElement.style.textAlign = 'left';
-                memoryElement.style.marginBottom = '1rem';
-                
-                memoryElement.innerHTML = `
-                    <p>"${memory}"</p>
-                    <small style="display: block; text-align: right; color: var(--text-color);">- Shared by You</small>
-                    <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
-                `;
-                
-                memoriesContainer.prepend(memoryElement);
-                memoryText.value = '';
-                
-                // Add delete functionality
-                memoryElement.querySelector('button').addEventListener('click', function() {
-                    memoryElement.remove();
-                    saveMemoriesToLocalStorage();
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    const img = item.querySelector('.gallery-img');
+                    img.style.transform = 'scale(1.05)';
                 });
                 
-                // Save to localStorage
-                saveMemoriesToLocalStorage();
-            }
-        });
-        
-        // Function to save memories to localStorage
-        function saveMemoriesToLocalStorage() {
-            const memories = [];
-            document.querySelectorAll('#memories-container > div').forEach(memoryDiv => {
-                memories.push(memoryDiv.innerHTML);
-            });
-            localStorage.setItem('memories', JSON.stringify(memories));
-        }
-        
-        // Load memories from localStorage if available
-        if (localStorage.getItem('memories')) {
-            const memories = JSON.parse(localStorage.getItem('memories'));
-            memoriesContainer.innerHTML = '';
-            
-            memories.forEach(memoryHTML => {
-                const memoryElement = document.createElement('div');
-                memoryElement.className = 'tribute-text';
-                memoryElement.style.textAlign = 'left';
-                memoryElement.style.marginBottom = '1rem';
-                memoryElement.innerHTML = memoryHTML;
-                
-                memoriesContainer.appendChild(memoryElement);
-                
-                // Reattach delete event listeners
-                memoryElement.querySelector('button').addEventListener('click', function() {
-                    memoryElement.remove();
-                    saveMemoriesToLocalStorage();
+                item.addEventListener('mouseleave', () => {
+                    const img = item.querySelector('.gallery-img');
+                    img.style.transform = 'scale(1)';
                 });
             });
         }
         
-        // GIF upload functionality
-        document.getElementById('gif-upload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const author = document.getElementById('tribute-author').value.trim();
+        // Initialize all functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            setupScrollToTop();
+            setupSmoothScrolling();
+            setupPlayButtons();
+            setupGalleryHover();
             
-            if (file && author) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const gifElement = document.createElement('div');
-                    gifElement.className = 'tribute-text';
-                    gifElement.style.textAlign = 'center';
-                    gifElement.style.marginBottom = '1rem';
-                    
-                    gifElement.innerHTML = `
-                        <h4>${author}</h4>
-                        <img src="${event.target.result}" alt="Koko GIF" style="max-width: 100%; max-height: 300px;">
-                        <small style="display: block; text-align: right; color: var(--text-color);">- From ${author}</small>
-                        <button class="upload-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
-                    `;
-                    
-                    document.getElementById('tributes-container').prepend(gifElement);
-                    document.getElementById('tribute-author').value = '';
-                    
-                    // Add delete functionality
-                    gifElement.querySelector('button').addEventListener('click', function() {
-                        gifElement.remove();
-                        saveTributesToLocalStorage();
-                    });
-                    
-                    // Save to localStorage
-                    saveTributesToLocalStorage();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Function to save tributes to localStorage
-        function saveTributesToLocalStorage() {
-            const tributes = [];
-            document.querySelectorAll('#tributes-container > div').forEach(tributeDiv => {
-                tributes.push(tributeDiv.innerHTML);
-            });
-            localStorage.setItem('tributes', JSON.stringify(tributes));
-        }
-        
-        // Load tributes from localStorage if available
-        if (localStorage.getItem('tributes')) {
-            const tributes = JSON.parse(localStorage.getItem('tributes'));
-            document.getElementById('tributes-container').innerHTML = '';
-            
-            tributes.forEach(tributeHTML => {
-                const tributeElement = document.createElement('div');
-                tributeElement.className = 'tribute-text';
-                tributeElement.style.textAlign = 'center';
-                tributeElement.style.marginBottom = '1rem';
-                tributeElement.innerHTML = tributeHTML;
+            // Add animation to section headings
+            const sectionHeadings = document.querySelectorAll('h2');
+            sectionHeadings.forEach(heading => {
+                heading.addEventListener('mouseover', () => {
+                    heading.classList.add('pulse');
+                });
                 
-                document.getElementById('tributes-container').appendChild(tributeElement);
-                
-                // Reattach delete event listeners
-                tributeElement.querySelector('button').addEventListener('click', function() {
-                    tributeElement.remove();
-                    saveTributesToLocalStorage();
+                heading.addEventListener('animationend', () => {
+                    heading.classList.remove('pulse');
                 });
             });
-        }
+        });
     </script>
 </body>
 </html>
