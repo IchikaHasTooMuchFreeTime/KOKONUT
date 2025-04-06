@@ -713,12 +713,26 @@
                     </button>
                 </div>
                 <div class="song-card">
-                    <h3 class="song-title">"Guitar, Loneliness and Blue Planet"</h3>
-                    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
-                    <p class="song-description">A track showcasing Kita's guitar skills alongside Bocchi's, with their contrasting styles creating a perfect harmony.</p>
-                    <button class="play-button" data-song="guitar-loneliness">
-                        <span class="play-icon">▶</span> Play Sample
-                    </button>
+    <h3 class="song-title">"Guitar, Loneliness and Blue Planet"</h3>
+    <p class="song-album">From "Bocchi the Rock! Original Soundtrack"</p>
+    <p class="song-description">A track showcasing Kita's guitar skills alongside Bocchi's, with their contrasting styles creating a perfect harmony.</p>
+    
+    <!-- YouTube iframe (hidden initially) -->
+    <div id="youtube-player-guitar-loneliness" style="display:none">
+        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=SDk1RA4g8CA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <button class="play-button" onclick="playYouTube('guitar-loneliness')">
+        <span class="play-icon">▶</span> Play Sample
+    </button>
+</div>
+
+<script>
+function playYouTube(songId) {
+    const playerDiv = document.getElementById(`youtube-player-${songId}`);
+    playerDiv.style.display = 'block';
+}
+</script>
                 </div>
                 <div class="song-card">
                     <h3 class="song-title">"That Band"</h3>
